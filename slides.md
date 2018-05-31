@@ -67,10 +67,10 @@ Motivation
 ------------------------------------------------------------------------
 Or what is `x` in this expression?
 
-<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F6a71a0131926b679dd3ae1b95b1deec7.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=100 width=570></iframe>
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F6a71a0131926b679dd3ae1b95b1deec7.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=110 width=570></iframe>
 <div>
 <mark>Equational reasoning</mark> would suggest
-`   0 = 1`
+`   0 = 1`<br><br>
 
 <div id="left">
   <img src="images/y-u-program-like-this.jpg" height="250">
@@ -89,11 +89,16 @@ Or what is `x` in this expression?
 ---
 What is referential transparency (RT)?
 ------------------------------------------------------------------------
+<br>
 An expression `e` is <mark>referentially transparent</mark> if, for all programs
 `p`, all occurrences of `e` in `p` can be replaced by the result of evaluating
 `e` without affecting the meaning of `p`.
+<br>
+<br>
 
 We will refer to this also as the <mark>substitution model</mark>.
+<br>
+<br>
 
 A function `f` is <mark>pure</mark> if the expression `f(x)` is referentially
 transparent for all referentially transparent `x`.
@@ -102,7 +107,7 @@ transparent for all referentially transparent `x`.
 An example for the substitution model
 ------------------------------------------------------------------------
 <iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F195b05b06f507f6c9e39389ff72e2240.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=170 width=770></iframe><br>
-Let's substitute
+Let's try to substitute
 <div>
 <iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2Fe937a868ec7dcdafe615e97f24f16399.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=150 width=770></iframe><br>
 ⚡⚡⚡
@@ -146,9 +151,10 @@ Benefits of RT
 - generalize
 - reason about
 - much less prone to bugs
+<br><br>
 
 <mark>Functional programming (FP)</mark> is the programming paradigm that builds
-on the core idea of RT
+on the <mark>core idea of RT</mark>
 
 ---
 What does that mean for us in practice?
@@ -170,16 +176,19 @@ Bringing it to practice
 ---
 A coffee shop with side effects
 ------------------------------------------------------------------------
-<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2Fef32b11b397b98c3b427043c013fba66.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=230 width=770></iframe><br>
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2Fef32b11b397b98c3b427043c013fba66.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=240 width=770></iframe>
+<div>
 Think about <mark>how to test this</mark>:<br>
 We don't want to charge actual money every time
 
 Think about <mark>how to avoid multiple calls</mark> for two coffees
-
+</div> <!-- .element: class="fragment" -->
+<div>
 What happens when we have <mark>no connection?</mark>
 
 The type signature pretends `Coffee` creation and <br>
 payment *never fails* ⇨ <mark>can't be RT</mark>
+</div> <!-- .element: class="fragment" -->
 
 ---
 A coffee shop without side effects
@@ -188,19 +197,23 @@ We can <mark>separate concerns</mark> (creating the coffee doesn't have to be co
 calling the credit card company) and return `Charge`s instead of relying on side
 effects
 
-<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F36c4f7ab1ffd5aad9a47dcfa5b0dbda6.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=230 width=770></iframe><br>
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F36c4f7ab1ffd5aad9a47dcfa5b0dbda6.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=250 width=770></iframe><br>
 
+<div>
 Enjoy how <mark>trivial</mark> it is <mark>to test</mark> this <mark>without mocking</mark>
-<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F43391b7c6b85ecb83df2b408bd38a3b7.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=230 width=770></iframe><br>
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F43391b7c6b85ecb83df2b408bd38a3b7.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=250 width=770></iframe><br>
+</div> <!-- .element: class="fragment" -->
 
 ---
 Extra benefits
 ------------------------------------------------------------------------
-This allows to write `buyCoffees` that combines the charges to the
+<mark>Pushing side effects to the boundary</mark> <br>
+<mark>makes the core more composable</mark>
+
+E.g. it allows to write `buyCoffees` that combines the charges to the
 same `CreditCard` reusing `buyCoffee`:
 
-<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2Fb2551034a6458e928ca9e9a1744ade50.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=220 width=800></iframe>
-
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2Fb2551034a6458e928ca9e9a1744ade50.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=210 width=800></iframe>
 <div>
 We already used two extremely useful high-level List methods above: `map` (~
 *homomorphism*) and <br>
@@ -220,6 +233,7 @@ Mapping instead of looping
 Mapping instead of looping
 ------------------------------------------------------------------------
 `map` is *the way* to transform values of one category to another
+<br><br>
 
 <div id="left">
 <iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F5182658bf2983c418576368ad37696a8.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=170 width=370></iframe>
@@ -235,6 +249,7 @@ Or graphically
 ---
 Mapping instead of looping
 ------------------------------------------------------------------------
+<br><br>
 <div id="left">
 <iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F081b0482fd6287eb42ea8308f6d7dc80.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=150 width=400></iframe>
 <br>
@@ -283,7 +298,7 @@ Folding instead of looping
 ---
 Folding instead of looping
 ------------------------------------------------------------------------
-<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F599717764575b8df5f312b3139799786.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=220 width=500></iframe>
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F599717764575b8df5f312b3139799786.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=240 width=500></iframe>
 
 No more loop mechanics or mutable state involved 
 👌
@@ -318,6 +333,20 @@ In other words
 ---
 How to do exception handling without exceptions
 ------------------------------------------------------------------------
+
+---
+Let's create an HTTP proxy
+------------------------------------------------------------------------
+<div id="left" width="40%">
+Bob 👨‍🎓
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F58e5500ffcb7b89f69fad9b10c22797b.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=150 width=500></iframe>
+Easy, right? Let's party!<br> 🍺 🏖️
+</div>
+<div id="right" width="60%">
+Alice 👩‍💻
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F4f0a279133ebafc9dc39b1ba53b363a0.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=250 width=600></iframe>
+💥 😠 💥
+</div>
 
 
 ---
