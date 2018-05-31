@@ -337,17 +337,62 @@ How to do exception handling without exceptions
 ---
 Let's create an HTTP proxy
 ------------------------------------------------------------------------
-<div id="left" width="40%">
+<div id="left" style="width: 45%">
 Bob 👨‍🎓
 <iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F58e5500ffcb7b89f69fad9b10c22797b.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=150 width=500></iframe>
 Easy, right? Let's party!<br> 🍺 🏖️
 </div>
-<div id="right" width="60%">
+<div id="right" style="width: 55%">
 Alice 👩‍💻
-<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F4f0a279133ebafc9dc39b1ba53b363a0.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=250 width=600></iframe>
+
+<div id="code-bad">
+loadNumberOfItems("foo.bar") shouldBe a [Int]
+<br>
+// InvalidUrlException
+<br>
+loadNumberOfItems("http://google.com") shouldBe a [Int]
+<br>
+// InvalidPayloadException
+<br>
+loadNumberOfItems("http://actual.server.endpoint.com/number") shouldBe a [Int]
+<br>
+// ConnectionException
+<br>
+// ParsingException
+<br>
+// ClassCastException
+</div>
 💥 😠 💥
+</div> <!-- .element: class="fragment" -->
+
+---
+Let's create an HTTP proxy
+------------------------------------------------------------------------
+Bob 👨‍🎓 😩
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F7127b21eaf06280d617d24173dd0e8a7.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=150 width=500></iframe>
+
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2Fe93151bac653cb3b0306dd515952d699.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=350 width=800></iframe>
+
+---
+Let's create an HTTP proxy
+------------------------------------------------------------------------
+👨‍🎓  👩‍💻
+<iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F29e4d76c3987f5713a430ebf6f7948fc.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=250 width=800></iframe>
+<div id="code-good">
+loadNumberOfItems(&quot;foo.bar&quot;).unsafeRunSync
+<br>
+&nbsp;&nbsp;shouldBe Left(InvalidUrl) 
+<br>
+loadNumberOfItems(&quot;http://google.com&quot;).unsafeRunSync
+<br>
+&nbsp;&nbsp;shouldBe Left(InvalidJson)
+<br>
+loadNumberOfItems(&quot;http://actual.server.endpoint.com/number&quot;).unsafeRunSync
+<br>
+&nbsp;&nbsp;shouldBe Right(42)
 </div>
 
+😎 🍾 🥂
 
 ---
 Related topics we left out

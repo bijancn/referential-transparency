@@ -180,6 +180,25 @@ body {
   word-wrap: break-word;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
 
+#code-bad {
+  font-family: monospace;
+  color: red;
+  font-size: small;
+  text-align: left;
+  background: black;
+  line-height: 1.5;
+}
+
+#code-good {
+    font-family: monospace;
+    color: green;
+    font-size: 0.5em;
+    text-align: left;
+    background: black;
+    line-height: 1.5;
+    width: 800
+}
+
 .reveal code {
   font-family: monospace;
   color: #d33682;
@@ -198,7 +217,7 @@ mark {
 }
 
 #left {
-  text-align: left;
+  /* text-align: left; */
   float: left;
   width:50%;
 }
@@ -228,7 +247,7 @@ mark {
 }
 
 #left-small {
-    float: left;
+    float: right;
     /* text-align: right; */
     width:30%;
 }
