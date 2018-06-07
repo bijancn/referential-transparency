@@ -256,6 +256,9 @@ iframe {
     margin: -50px;
 }
 
+.gist {
+  font-size: 16px;
+}
 
 .reveal pre code {
   display: block;

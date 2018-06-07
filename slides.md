@@ -147,27 +147,27 @@ Benefits of RT
 - easier to test
 - reuse
 - compose
-- parallelize
 - generalize
-- reason about
+- parallelize
+- reason about locally
 - much less prone to bugs
 <br><br>
 
-<mark>Functional programming (FP)</mark> is the programming paradigm that builds
-on the <mark>core idea of RT</mark>
+<mark>Functional programming (FP)</mark> is the programming paradigm
+that builds on the <mark>core idea of RT</mark>
 
 ---
-What does that mean for us in practice?
+What else does that mean for us in practice?
 ------------------------------------------------------------------------
 RT enables <mark>equational reasoning</mark> about programs <br>
 through the substitution model ⇨
-- You can <mark>refactor confidently</mark> and relentlessly!
-- You can easily <mark>reason about code locally</mark> <br>
-  as it doesn't change something you cannot see
-- Vice versa, you can <mark>reuse code without fearing</mark> to break something
+
+<div>
+You can <mark>refactor confidently</mark> and relentlessly!
 
 <mark>Combined with a strongly typed language</mark>, the signature of a pure
 function already tells you often what it does
+</div> <!-- .element: class="fragment" -->
 
 ---
 Bringing it to practice
@@ -239,7 +239,7 @@ Mapping instead of looping
 <iframe src="data:text/html;charset=utf-8,%3Cbody%3E%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2Fbijancn%2F5182658bf2983c418576368ad37696a8.js%22%3E%3C%2Fscript%3E%3C%2Fbody%3E" height=170 width=370></iframe>
 <br>
 `F` can be `List` or `Array` or `Option` or `Future` or anything for which we
-can define `map` in an RT way
+can define `map`
 </div>
 <div id="right">
 Or graphically
@@ -366,6 +366,38 @@ loadNumberOfItems("http://actual.server.endpoint.com/number") shouldBe a [Int]
 </div> <!-- .element: class="fragment" -->
 
 ---
+Back to the drawing board
+------------------------------------------------------------------------
+- Represent <mark>failures</mark> or <mark>partiality</mark> with
+    <mark>ordinary values</mark>
+- The return <mark>type</mark> should indicate what can go wrong, so the compiler can
+    remind us to handle all cases
+- Think `C` <mark>return codes</mark> on steroids
+- Trying to use <mark>sentinal values</mark> like `NaN` might not be an option, allow
+    silent propagation and result in nongeneric boilerplate
+
+---
+Either or Option
+------------------------------------------------------------------------
+There are two common, minimal wrappers <br>to indicate <mark>possible failures</mark>:
+<br>
+<br>
+
+`Option` is like a list with at most one element
+- `Option` is either `None` or `Some(x)`
+- `map` on an Option adds the next computation step when there is
+    `Some`thing
+- `map` allows us <mark>lift</mark> any function that goes `A => B` to a
+  function `Option[A] => Option[B]`. Thus we don't have to entangle arguments
+  with `Option`
+<br>
+<br>
+<br>
+
+`Either` is like `Option` but instead of `None` it allows to add
+<mark>what went wrong</mark>
+
+---
 Let's create an HTTP proxy
 ------------------------------------------------------------------------
 Bob 👨‍🎓 😩
@@ -397,12 +429,15 @@ loadNumberOfItems(&quot;http://actual.server.endpoint.com/number&quot;).unsafeRu
 ---
 Related topics we left out
 ------------------------------------------------------------------------
-- How <mark>typeclasses</mark> and <mark>ad-hoc polymorphism</mark> works in Scala
 - <mark>Applicatives & Monads</mark>
+- <mark>Semigroups</mark>
 - <mark>Strictness & Laziness</mark>
 - <mark>Encapsulating any side effects</mark> in RT types (`IO`)
+<br>
+<br>
+
+- How <mark>typeclasses</mark> and <mark>ad-hoc polymorphism</mark> works in Scala
 - <mark>Variance</mark> (Covariant, Contravariant and Invariant)
-- <mark>Semigroups</mark>
 
 ---
 Summary
@@ -412,6 +447,7 @@ Summary
 - RT is by definition the only way to allow for<br>
   <mark>relentless refactoring</mark>
 - RT forces you to make any assumptions <mark>explicit</mark>
+- FP allows you to express anything in an RT way
 - You can make your code more transparent in any language...
 
   ...but it's simpler in some then others 😎
